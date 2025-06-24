@@ -1,9 +1,8 @@
-import { Project, Task } from "@/types";
+import { PROJECTS_STORAGE_KEY } from "@/consts/projects.consts";
+import { Project, Task } from "@/types/projects.types";
 import { getItem, setItem } from "@/utils/storage";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import * as Crypto from "expo-crypto";
-
-const STORAGE_KEY = "projects";
 
 interface ProjectsState {
   items: Project[];
@@ -17,12 +16,11 @@ const initialState: ProjectsState = {
   error: null,
 };
 
-// Async thunks
 export const loadProjects = createAsyncThunk(
   "projects/load",
   async (_, { rejectWithValue }) => {
     try {
-      const storedProjects = await getItem(STORAGE_KEY);
+      const storedProjects = await getItem(PROJECTS_STORAGE_KEY);
       if (storedProjects) {
         return JSON.parse(storedProjects) as Project[];
       }
@@ -38,7 +36,7 @@ export const saveProjects = createAsyncThunk(
   "projects/save",
   async (projects: Project[], { rejectWithValue }) => {
     try {
-      await setItem(STORAGE_KEY, JSON.stringify(projects));
+      await setItem(PROJECTS_STORAGE_KEY, JSON.stringify(projects));
       return projects;
     } catch (error) {
       console.error("Failed to save projects:", error);

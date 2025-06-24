@@ -1,5 +1,5 @@
 import { ThemedText } from "@/components/ThemedText";
-import { Task } from "@/types";
+import { Task } from "@/types/projects.types";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
