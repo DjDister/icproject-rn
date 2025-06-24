@@ -3,11 +3,11 @@ import { ThemedView } from "@/components/ThemedView";
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
-interface NotFoundScreenProps {
+interface NoFoundProjectProps {
   onGoBack: () => void;
 }
 
-export const NotFoundScreen = ({ onGoBack }: NotFoundScreenProps) => (
+export const NoFoundProject = ({ onGoBack }: NoFoundProjectProps) => (
   <ThemedView style={styles.container}>
     <ThemedText>Project not found</ThemedText>
     <TouchableOpacity onPress={onGoBack} style={styles.backButton}>
