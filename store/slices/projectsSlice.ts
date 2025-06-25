@@ -125,13 +125,17 @@ const projectsSlice = createSlice({
       .addCase(loadProjects.fulfilled, (state, action) => {
         state.items = action.payload;
         state.isLoading = false;
+        state.error = null;
       })
       .addCase(loadProjects.rejected, (state, action) => {
+        console.log("rejected");
+        console.log("aciton.payload", action.payload);
         state.isLoading = false;
         state.error = action.payload as string;
       })
       .addCase(saveProjects.fulfilled, (state, action) => {
         state.items = action.payload;
+        state.error = null;
       })
       .addCase(saveProjects.rejected, (state, action) => {
         state.error = action.payload as string;

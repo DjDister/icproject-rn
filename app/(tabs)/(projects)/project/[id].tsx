@@ -28,7 +28,13 @@ export default function ProjectScreen() {
   const project = useAppSelector((state) =>
     state.projects.items.find((p) => p.id === id)
   );
-  const isLoading = useAppSelector((state) => state.projects.isLoading);
+  const { isLoading, error } = useAppSelector((state) => state.projects);
+
+  useEffect(() => {
+    if (error) {
+      Alert.alert("Error", error);
+    }
+  }, [error]);
 
   useEffect(() => {
     dispatch(loadProjects());

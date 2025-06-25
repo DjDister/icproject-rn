@@ -9,14 +9,20 @@ import {
 } from "@/store/slices/projectsSlice";
 import { Project } from "@/types/projects.types";
 import { useFocusEffect } from "expo-router";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Alert, StyleSheet } from "react-native";
 
 export default function TasksScreen() {
   const [newProjectName, setNewProjectName] = useState("");
   const dispatch = useAppDispatch();
 
-  const { items: projects } = useAppSelector((state) => state.projects);
+  const { items: projects, error } = useAppSelector((state) => state.projects);
+
+  useEffect(() => {
+    if (error) {
+      Alert.alert("Error", error);
+    }
+  }, [error]);
 
   useFocusEffect(
     useCallback(() => {

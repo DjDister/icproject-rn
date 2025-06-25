@@ -10,7 +10,7 @@ export const getItem = async (key: string): Promise<string | null> => {
     return await AsyncStorage.getItem(key);
   } catch (error) {
     console.error(`Error retrieving item with key ${key}:`, error);
-    return null;
+    throw error;
   }
 };
 
