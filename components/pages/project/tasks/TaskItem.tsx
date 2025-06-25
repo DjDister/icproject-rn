@@ -1,5 +1,5 @@
 import { ThemedText } from "@/components/ThemedText";
-import { useColorScheme } from "@/hooks/useColorScheme.web";
+import { useColorScheme } from "@/hooks/useColorScheme";
 import { Task } from "@/types/projects.types";
 import { Ionicons } from "@expo/vector-icons";
 import React, { memo } from "react";

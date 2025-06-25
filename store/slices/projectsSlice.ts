@@ -55,9 +55,7 @@ const projectsSlice = createSlice({
         name: action.payload,
         tasks: [],
       };
-      console.log("newProject", newProject);
       state.items.push(newProject);
-      console.log("state.items", state.items);
     },
     deleteProject: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter(
@@ -131,6 +129,9 @@ const projectsSlice = createSlice({
       .addCase(loadProjects.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
+      })
+      .addCase(saveProjects.fulfilled, (state, action) => {
+        state.items = action.payload;
       })
       .addCase(saveProjects.rejected, (state, action) => {
         state.error = action.payload as string;
